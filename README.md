@@ -38,4 +38,4 @@ As a workaround, we **manually compiled results** and created a static visualiza
 *Converted compressed model imported into the Android mobile phone.*
 
 ## 🎥 Demo Video
-[![Watch the demo]([https://www.youtube.com/shorts/FJAhRthFuZs])
+[[![Watch the demo]([https://www.youtube.com/shorts/FJAhRthFuZs])](https://youtube.com/shorts/FJAhRthFuZs)
