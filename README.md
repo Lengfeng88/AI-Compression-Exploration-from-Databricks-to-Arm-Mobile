@@ -15,14 +15,14 @@ Built entirely on **Databricks Free Edition**, we demonstrate a full MLOps pipel
 
 | Method       | Accuracy | Latency (CPU) | Model Size | ONNX Exported |
 |--------------|----------|---------------|------------|----------------|
-| Distillation | 64.90%   | 1408 ms       | 8.76 MB    | ✅ |
-| QAT          | 68.72%   | 80.28 ms      | 9.49 MB    | ✅ |
-| NAS          | 66.87%   | 1338 ms       | 5.96 MB    | ✅ |
-| **Pruning**  | **69.57%** | **26.71 ms**  | **8.76 MB** | ✅ (**Best**) |
+| Distillation | 64.90%   | 1408 ms       | 8.76 MB    | ok |
+| QAT          | 68.72%   | 80.28 ms      | 9.49 MB    | ok |
+| NAS          | 66.87%   | 1338 ms       | 5.96 MB    | ok |
+| **Pruning**  | **69.57%** | **26.71 ms**  | **8.76 MB** | ok (**Best**) |
 
-✅ **Key Insight**: Structured pruning achieves the best trade-off—**69.6% accuracy at just 26.7 ms latency (37 FPS)**—making it the ideal candidate for on-device AI.
+ **Key Insight**: Structured pruning achieves the best trade-off—**69.6% accuracy at just 26.7 ms latency (37 FPS)**—making it the ideal candidate for on-device AI.
 
-## 🛠️ Lakehouse & Limitations
+##  Lakehouse & Limitations
 We attempted to use **Delta Lake** for structured result storage and versioning. However, **Databricks Free Edition** lacks Unity Catalog and cannot create the model_benchmarks, preventing automated Dashboard generation.
 
 As a workaround, we **manually compiled results** and created a static visualization—demonstrating real-world adaptability in constrained environments.
