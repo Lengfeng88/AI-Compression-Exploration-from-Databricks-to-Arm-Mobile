@@ -1,4 +1,4 @@
-# On-Device AI Compression Exploration on Databricks Free Edition
+# AI Compression Exploration on Databricks Free Edition
 
 ##  Project Overview
 This project explores **four model compression techniques**—Knowledge Distillation, Quantization-Aware Training (QAT), Neural Architecture Search (NAS), and Structured Pruning—to enable real-time computer vision on **ultra-low-end Arm phones**, such as the **vivo Y81s (Cortex-A53, 3GB RAM)**.
