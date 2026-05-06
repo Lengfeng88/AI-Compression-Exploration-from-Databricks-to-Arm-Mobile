@@ -68,7 +68,7 @@ with mlflow.start_run(run_name="NAS_MobileNetV3_Trained") as run:
         print(f"Epoch {epoch+1}: Loss={running_loss/len(trainloader):.3f}, Acc={acc:.2f}%")
         mlflow.log_metrics({"train_loss": running_loss/len(trainloader), "val_acc": acc}, step=epoch)
     
-    # ✅ CRITICAL: Save model INSIDE a "models" subfolder
+    # CRITICAL: Save model INSIDE a "models" subfolder
     with tempfile.TemporaryDirectory() as tmp_dir:
         models_dir = os.path.join(tmp_dir, "models")
         os.makedirs(models_dir, exist_ok=True)  # ←← 创建 models/ 目录
@@ -80,4 +80,4 @@ with mlflow.start_run(run_name="NAS_MobileNetV3_Trained") as run:
         mlflow.log_artifact(model_path, "models")  # ←← 路径必须匹配！
 
     mlflow.set_tag("method", "NAS")
-    print(f"✅ Model saved to MLflow. Run ID: {run.info.run_id}")
+    print(f"Model saved to MLflow. Run ID: {run.info.run_id}")
