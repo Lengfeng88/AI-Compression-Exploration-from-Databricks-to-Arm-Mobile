@@ -30,7 +30,7 @@ exp = mlflow.get_experiment_by_name("/Shared/Arm_Compression")
 exp_id = exp.experiment_id
 teacher_runs = client.search_runs(experiment_ids=[exp.experiment_id], filter_string='tags.role = "teacher"')
 if not teacher_runs:
-    raise RuntimeError("❌ Teacher model not found! Please run 00_train_teacher.py first and ensure that it is used. mlflow.set_tag('role', 'teacher')")
+    raise RuntimeError("Teacher model not found! Please run 00_train_teacher.py first and ensure that it is used. mlflow.set_tag('role', 'teacher')")
 
 teacher = mlflow.pytorch.load_model(f"runs:/{teacher_runs[0].info.run_id}/teacher_model", map_location="cpu")
 teacher = teacher.to(device).eval()
@@ -100,7 +100,7 @@ def robust_write_to_delta(spark, data_dict, table_name="model_benchmarks"):
     """
     # Get the current catalog
     current_catalog = spark.sql("SELECT current_catalog()").collect()[0][0]
-    print(f"✅ Current Catalog: {current_catalog}")
+    print(f"Current Catalog: {current_catalog}")
     
     # Ensure the default schema exists.
     spark.sql(f"CREATE SCHEMA IF NOT EXISTS `{current_catalog}`.`default`")
@@ -112,7 +112,7 @@ def robust_write_to_delta(spark, data_dict, table_name="model_benchmarks"):
     df = spark.createDataFrame([Row(**data_dict)])
     df.write.mode("append").option("mergeSchema", "true").saveAsTable(full_table_name)
     
-    print(f"✅ Already written to the table: {full_table_name}")
+    print(f"Already written to the table: {full_table_name}")
     return full_table_name
 
 # === MLflow + Delta Lake ===
@@ -127,4 +127,4 @@ robust_write_to_delta(spark, {
     "model_size_mb": size_mb
 })
 
-print(f"✅ Distillation | Acc: {acc:.2f}% | Latency: {lat:.2f} ms | Size: {size_mb:.2f} MB")
+print(f"Distillation | Acc: {acc:.2f}% | Latency: {lat:.2f} ms | Size: {size_mb:.2f} MB")
