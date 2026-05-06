@@ -16,7 +16,7 @@ spark = SparkSession.builder.getOrCreate()
 
 # Hardcode the distillation Run ID (replace with your valid ID)
 distill_run_id = "0403e79be845489e914a04a53fca67a8"
-print(f"✅ Loading the distilled model: Run ID={distill_run_id}")
+print(f"Loading the distilled model: Run ID={distill_run_id}")
 
 with tempfile.TemporaryDirectory() as tmp:
     local_path = mlflow.artifacts.download_artifacts(
@@ -98,7 +98,7 @@ def robust_write_to_delta(spark, data_dict, table_name="model_benchmarks"):
     """
     # Get the current catalog
     current_catalog = spark.sql("SELECT current_catalog()").collect()[0][0]
-    print(f"✅ Current Catalog: {current_catalog}")
+    print(f"Current Catalog: {current_catalog}")
     
     # Ensure the default schema exists.
     spark.sql(f"CREATE SCHEMA IF NOT EXISTS `{current_catalog}`.`default`")
@@ -110,7 +110,7 @@ def robust_write_to_delta(spark, data_dict, table_name="model_benchmarks"):
     df = spark.createDataFrame([Row(**data_dict)])
     df.write.mode("append").option("mergeSchema", "true").saveAsTable(full_table_name)
     
-    print(f"✅ Already written to the table: {full_table_name}")
+    print(f"Already written to the table: {full_table_name}")
     return full_table_name
 
 # === MLflow + Delta Lake ===
@@ -124,4 +124,4 @@ robust_write_to_delta(spark, {
     "model_size_mb": model_size_mb
 })
 
-print(f"✅ Pruning completed | Acc: {accuracy:.2f}% | Latency: {latency:.2f} ms | Size: {model_size_mb:.2f} MB")
+print(f"Pruning completed | Acc: {accuracy:.2f}% | Latency: {latency:.2f} ms | Size: {model_size_mb:.2f} MB")
