@@ -24,4 +24,4 @@ torch.onnx.export(
 )
 
 print(f"✅ ONNX The model has been saved: {onnx_path}")
-print(f"  大小: {os.path.getsize(onnx_path) / (1024**2):.2f} MB")
+print(f"  size: {os.path.getsize(onnx_path) / (1024**2):.2f} MB")
