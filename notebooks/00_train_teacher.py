@@ -29,7 +29,7 @@ for epoch in range(10):
         optimizer.step()
     print(f"Epoch {epoch+1} done")
 
-# ✅ Create input_example (CIFAR-10 format: 32x32x3)
+# Create input_example (CIFAR-10 format: 32x32x3)
 input_example = torch.randn(1, 3, 32, 32).numpy()  # batch_size=1, C=3, H=32, W=32
 
 # Save to MLflow and tag it 
@@ -40,4 +40,4 @@ with mlflow.start_run(run_name="Teacher_ResNet18") as run:
         input_example=input_example  
     )
     mlflow.set_tag("role", "teacher")
-print(f"✅ Teacher model has been saved，Run ID: {run.info.run_id}")
+print(f"Teacher model has been saved，Run ID: {run.info.run_id}")
