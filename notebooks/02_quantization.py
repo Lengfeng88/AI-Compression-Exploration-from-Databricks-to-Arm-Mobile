@@ -22,7 +22,7 @@ spark = SparkSession.builder.getOrCreate()
 
 # === Hard-coded valid Distillation Run ID ===
 distill_run_id = "0403e79be845489e914a04a53fca67a8" 
-print(f"✅ Using the distilled model: Run ID={distill_run_id}")
+print(f"Using the distilled model: Run ID={distill_run_id}")
 
 # === Loading the distilled model（FP32）===
 with tempfile.TemporaryDirectory() as tmp:
@@ -58,7 +58,7 @@ with mlflow.start_run(run_name="QAT") as run:
             loss.backward()
             optimizer.step()
     
-    # ✅ Save the model after QAT fine-tuning (still FP32, but with added quantization information)
+    # Save the model after QAT fine-tuning (still FP32, but with added quantization information)
     with tempfile.TemporaryDirectory() as tmp:
         qat_model_path = os.path.join(tmp, "qat_model_fp32.pth")
         torch.save(model.state_dict(), qat_model_path)
@@ -106,7 +106,7 @@ def robust_write_to_delta(spark, data_dict, table_name="model_benchmarks"):
     """
     # Get the current catalog
     current_catalog = spark.sql("SELECT current_catalog()").collect()[0][0]
-    print(f"✅ Current Catalog: {current_catalog}")
+    print(f"Current Catalog: {current_catalog}")
     
     # Ensure the default schema exists.
     spark.sql(f"CREATE SCHEMA IF NOT EXISTS `{current_catalog}`.`default`")
@@ -118,7 +118,7 @@ def robust_write_to_delta(spark, data_dict, table_name="model_benchmarks"):
     df = spark.createDataFrame([Row(**data_dict)])
     df.write.mode("append").option("mergeSchema", "true").saveAsTable(full_table_name)
     
-    print(f"✅ Already written to the table: {full_table_name}")
+    print(f"Already written to the table: {full_table_name}")
     return full_table_name
 
 # === MLflow + Delta Lake ===
