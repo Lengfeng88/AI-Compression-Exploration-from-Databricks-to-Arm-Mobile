@@ -23,7 +23,7 @@ testset = torchvision.datasets.CIFAR10("./data", train=False, download=True, tra
 testloader = DataLoader(testset, batch_size=64, shuffle=False)
 
 # === Load fine-tuned MobileNetV3 from MLflow ===
-# ⚠️ Replace with your actual Run ID from 03a_train_mobilenetv3.py
+# Replace with your actual Run ID from 03a_train_mobilenetv3.py
 nas_run_id = "b5834b41bba1481f9990e1a35084991f"  
 
 # Load model
@@ -70,7 +70,7 @@ def robust_write_to_delta(spark, data_dict, table_name="model_benchmarks"):
     """
     # Get the current catalog
     current_catalog = spark.sql("SELECT current_catalog()").collect()[0][0]
-    print(f"✅ Current Catalog: {current_catalog}")
+    print(f"Current Catalog: {current_catalog}")
     
     # Ensure the default schema exists.
     spark.sql(f"CREATE SCHEMA IF NOT EXISTS `{current_catalog}`.`default`")
@@ -82,7 +82,7 @@ def robust_write_to_delta(spark, data_dict, table_name="model_benchmarks"):
     df = spark.createDataFrame([Row(**data_dict)])
     df.write.mode("append").option("mergeSchema", "true").saveAsTable(full_table_name)
     
-    print(f"✅ Already written to the table: {full_table_name}")
+    print(f"Already written to the table: {full_table_name}")
     return full_table_name
 
 # === MLflow + Delta Lake ===
@@ -97,4 +97,4 @@ robust_write_to_delta(spark, {
     "model_size_mb": size_mb
 })
 
-print(f"✅ NAS | Acc: {acc:.2f}% | Latency: {lat:.2f} ms | Size: {size_mb:.2f} MB")
+print(f"NAS | Acc: {acc:.2f}% | Latency: {lat:.2f} ms | Size: {size_mb:.2f} MB")
